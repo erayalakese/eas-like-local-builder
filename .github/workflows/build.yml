@@ -17,6 +17,10 @@ jobs:
         with:
           fetch-depth: 0  # Ensures full Git history for tagging
 
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
       - name: Get short commit hash
         id: commit
         run: echo "SHORT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
@@ -35,10 +39,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t erayalakese/eas-like-local-builder:${{ env.SHORT_HASH }} -t erayalakese/eas-like-local-builder:latest .
+        run: docker build -t erayalakese/eas-like-local-builder:${{ env.VERSION }} -t erayalakese/eas-like-local-builder:latest .
 
       - name: Push Docker images
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          docker push erayalakese/eas-like-local-builder:${{ env.SHORT_HASH }}
+          docker push erayalakese/eas-like-local-builder:${{ env.VERSION }}
           docker push erayalakese/eas-like-local-builder:latest

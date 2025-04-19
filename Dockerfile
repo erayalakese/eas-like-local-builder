@@ -6,7 +6,6 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 # Install essential packages and Java 17
 RUN apt-get update && apt-get install -y \
-    curl \
     wget \
     unzip \
     build-essential \
@@ -29,9 +28,9 @@ RUN wget https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-x64.tar.xz \
 RUN npm install -g npm@9.8.1 \
     && npm install -g yarn@1.22.21 pnpm@9.3.0 node-gyp@10.1.0 eas-cli
 
-# Install Bun 1.1.13
+# Install Bun 1.1.13 using wget
 ENV BUN_INSTALL /usr/local
-RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.13"
+RUN wget -qO- https://bun.sh/install | bash -s "bun-v1.1.13"
 
 # Install Android NDK r26b
 RUN wget https://dl.google.com/android/repository/android-ndk-r26b-linux.zip \
