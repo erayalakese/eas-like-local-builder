@@ -54,3 +54,6 @@ ENV PATH $PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-too
 # Install required Android SDK components
 RUN yes | sdkmanager --licenses \
     && sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.0"
+
+# Hardcode the EAS build command with a default profile
+CMD ["bash", "-c", "eas build --platform android --local --profile ${PROFILE:-development}"]

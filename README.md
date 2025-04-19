@@ -80,6 +80,10 @@ EAS Vibes 🎉
 
 Designed to match the [EAS Ubuntu 22.04 JDK 17 NDK r26b image](https://docs.expo.dev/build-reference/infrastructure/#ubuntu-2204-jdk-17-ndk-r26b-latest-sdk-51-sdk-52). Local builds, EAS consistency—boom! 💥
 
+Disclaimer ⚠️
+-------------
+This repository and its developers are not affiliated with, endorsed by, or connected to Expo or ESA (Expo Application Services). This project is an independent effort to mimic the EAS build environment for local use. Use it at your own risk. 🚧
+
 License 📄
 ----------
 
