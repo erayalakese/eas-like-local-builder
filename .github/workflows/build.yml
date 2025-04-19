@@ -2,8 +2,8 @@ name: Build and Push worker_android
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 jobs:
