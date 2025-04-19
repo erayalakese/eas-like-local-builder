@@ -1,0 +1,44 @@
+name: Build and Push worker_android
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensures full Git history for tagging
+
+      - name: Get short commit hash
+        id: commit
+        run: echo "SHORT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Create Git tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git tag -a "${{ env.SHORT_HASH }}" -m "Auto-generated tag for commit ${{ env.SHORT_HASH }}"
+          git push origin "${{ env.SHORT_HASH }}"
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build -t erayalakese/eas-like-local-builder:${{ env.SHORT_HASH }} -t erayalakese/eas-like-local-builder:latest .
+
+      - name: Push Docker images
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          docker push erayalakese/eas-like-local-builder:${{ env.SHORT_HASH }}
+          docker push erayalakese/eas-like-local-builder:latest
