@@ -3,7 +3,7 @@ Expo Android Local Build Environment 🚀
 
 ![Docker Image Version](https://img.shields.io/docker/v/erayalakese/eas-like-local-builder)
 
-Meet **worker\_android**: a Docker image built to streamline local Expo Android app builds, mirroring the Expo Application Services (EAS) environment for local builds 🎯
+Meet **eas-like-local-builder**: a Docker image built to streamline local Expo Android app builds, mirroring the Expo Application Services (EAS) environment for local builds 🎯
 
 Why Use This? 🤔
 ----------------
@@ -17,36 +17,36 @@ Get Started 🛠️
 
 *   **Pull It**:
     
-        docker pull erayalakese/worker_android
+        docker pull erayalakese/eas-like-local-builder
     
 *   **Or Build It Yourself**:
     
-        docker build -t worker_android .
+        docker build -t eas-like-local-builder .
     
 
 ### Step 2: Run It 🏃‍♂️
 
 Defaults to `eas build --platform android --local` with the `development` profile:
 
-    docker container run -v /path/to/your/project:/app -w /app -it worker_android
+    docker container run -v /path/to/your/project:/app -w /app -it eas-like-local-builder
 
 #### Switch Profiles 🔄
 
 Use the `-e` flag for a custom profile like `production`:
 
-    docker container run -e PROFILE=production -v /path/to/your/project:/app -w /app -it worker_android
+    docker container run -e PROFILE=production -v /path/to/your/project:/app -w /app -it eas-like-local-builder
 
 #### Control VCS Behavior 🚫
 
 To skip version control system (VCS) checks during the build (handy if you’re working without a Git repo), set `EAS_NO_VCS`:
 
-    docker container run -e EAS_NO_VCS=1 -v /path/to/your/project:/app -w /app -it worker_android
+    docker container run -e EAS_NO_VCS=1 -v /path/to/your/project:/app -w /app -it eas-like-local-builder
 
 #### Override the Default Command ⚙️
 
 If you ever need to run a different command (e.g., `eas login` or a build with a different profile), you’ll need to override the `CMD` at runtime. You can do this by appending the new command to the `docker run` instruction, like:
 
-    docker container run -v /path/to/your/project:/app -w /app -it worker_android eas login
+    docker container run -v /path/to/your/project:/app -w /app -it eas-like-local-builder eas login
 
 ### Explanation of Flags 📜
 
