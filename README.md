@@ -1,7 +1,7 @@
 Expo Android Local Build Environment 🚀
 =================================
 
-![Docker Image Version](https://img.shields.io/docker/v/erayalakese/eas-like-local-builder?label=docker)
+![Docker Image Version](https://img.shields.io/docker/v/erayalakese/eas-like-local-builder?label=docker) ![GitHub License](https://img.shields.io/github/license/erayalakese/eas-like-local-builder)
 
 Meet **eas-like-local-builder**: a Docker image built to streamline local Expo Android app builds, mirroring the Expo Application Services (EAS) environment for local builds 🎯
 
@@ -87,6 +87,6 @@ This repository and its developers are not affiliated with, endorsed by, or conn
 License 📄
 ----------
 
-You can basically do everything with this image and all the responsibility is yours.
+You can basically do everything with this repo and all the responsibility is yours.
 
 The Unlicensed License—check out the [LICENSE](LICENSE) file for the details.
